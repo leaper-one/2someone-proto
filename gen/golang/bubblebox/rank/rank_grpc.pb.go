@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: idl/proto/bubble-box/rank.proto
+// source: idl/proto/bubblebox/rank.proto
 
 package rank
 
@@ -241,5 +241,5 @@ var RankService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "idl/proto/bubble-box/rank.proto",
+	Metadata: "idl/proto/bubblebox/rank.proto",
 }

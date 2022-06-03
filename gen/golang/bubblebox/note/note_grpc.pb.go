@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: idl/proto/bubble-box/note.proto
+// source: idl/proto/bubblebox/note.proto
 
 package note
 
@@ -317,5 +317,5 @@ var NoteService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "idl/proto/bubble-box/note.proto",
+	Metadata: "idl/proto/bubblebox/note.proto",
 }
