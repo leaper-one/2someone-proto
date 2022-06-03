@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.1
-// source: idl/proto/2-some-one/user.proto
+// source: idl/proto/account/user.proto
 
 package golang
 
@@ -295,5 +295,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "idl/proto/2-some-one/user.proto",
+	Metadata: "idl/proto/account/user.proto",
 }
