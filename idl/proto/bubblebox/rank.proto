@@ -4,7 +4,7 @@ package rank;
 
 import public "google/protobuf/timestamp.proto";
 
-option go_package = "./gen/golang/bubble-box/rank";
+option go_package = "./gen/golang/bubblebox/rank";
 
 service RankService {
     // 获取排序
