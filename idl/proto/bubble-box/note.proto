@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package note;
 
-option go_package = "./gen/grpc/bubble-box/note/golang";
+option go_package = "./gen/golang/bubble-box/note";
 
 service NoteService {
     /*

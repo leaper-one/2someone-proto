@@ -4,7 +4,7 @@
 // - protoc             v3.20.1
 // source: idl/proto/account/user.proto
 
-package golang
+package user
 
 import (
 	context "context"

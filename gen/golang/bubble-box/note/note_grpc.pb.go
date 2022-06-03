@@ -4,7 +4,7 @@
 // - protoc             v3.20.1
 // source: idl/proto/bubble-box/note.proto
 
-package golang
+package note
 
 import (
 	context "context"
