@@ -1,4 +1,4 @@
-module github.com/leaper-one/2someone-proto/gen/golang
+module github.com/leaper-one/2someone-proto
 
 go 1.17
 
