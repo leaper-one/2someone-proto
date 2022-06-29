@@ -1,4 +1,4 @@
-module github.com/leaper-one/2someone-proto
+module github.com/leaper-one/2someone-proto/gen/proto/go
 
 go 1.17
 
