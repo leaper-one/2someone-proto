@@ -2,6 +2,5 @@ version: v1beta1
 name: buf.buil/2someone-proto/demo
 build:
   roots:
-    - mes
-    - note
-    - user
+    - 2SOMEone
+    - BubbleBox
