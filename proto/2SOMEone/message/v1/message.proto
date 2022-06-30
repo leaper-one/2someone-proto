@@ -1,13 +1,11 @@
 syntax = "proto3";
 
-package api.v1;
-
 option go_package = "api/v1/message";
 
 service message {
-  //向手机号发送验证码
+  // 向手机号发送验证码
   rpc SentMessageCode(SentMessageCodeRequest) returns (SentMessageCodeResponse) {}
-  //校验验证码
+  // 校验验证码
   rpc CheckMessageCode(CheckMessageCodeRequest) returns (CheckMessageCodeResponse) {}
 }
 
@@ -21,7 +19,7 @@ message SentMessageCodeResponse {
   int32 code = 1;
   // 返回信息
   string msg = 2;
-  // 验证码
+  // 短信id
   uint64 msg_id =3;
 }
 
@@ -30,6 +28,8 @@ message CheckMessageCodeRequest {
   string phone = 1;
   //用户输入的验证码
   string code = 2;
+  // 短信id
+  uint64 msg_id =3;
 }
 
 message CheckMessageCodeResponse {

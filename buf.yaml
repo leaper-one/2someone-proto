@@ -1,5 +1,5 @@
-version: v1
-name: buf.buil/2someone-proto/demo
+version: v1beta1
+name: buf.buil/2someone-proto/deme
 build:
   roots:
     - proto

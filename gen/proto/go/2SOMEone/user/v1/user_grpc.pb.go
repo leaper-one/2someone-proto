@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: 2SOMEone/account/v1/user.proto
+// source: 2SOMEone/user/v1/user.proto
 
 package user
 
@@ -22,8 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	// 向手机号发送验证码
-	SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error)
 	// 通过手机号注册，需要验证码
 	SignUpByPhone(ctx context.Context, in *SignUpByPhoneRequest, opts ...grpc.CallOption) (*SignUpByPhoneResponse, error)
 	// 通过手机号登录
@@ -45,18 +43,9 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error) {
-	out := new(SentMessageCodeResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/SentMessageCode", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userServiceClient) SignUpByPhone(ctx context.Context, in *SignUpByPhoneRequest, opts ...grpc.CallOption) (*SignUpByPhoneResponse, error) {
 	out := new(SignUpByPhoneResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/SignUpByPhone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/UserService/SignUpByPhone", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +54,7 @@ func (c *userServiceClient) SignUpByPhone(ctx context.Context, in *SignUpByPhone
 
 func (c *userServiceClient) SignInByPhone(ctx context.Context, in *SignInByPhoneRequest, opts ...grpc.CallOption) (*SignInByPhoneResponse, error) {
 	out := new(SignInByPhoneResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/SignInByPhone", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/UserService/SignInByPhone", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +63,7 @@ func (c *userServiceClient) SignInByPhone(ctx context.Context, in *SignInByPhone
 
 func (c *userServiceClient) GetMe(ctx context.Context, in *GetMeRequest, opts ...grpc.CallOption) (*GetMeResponse, error) {
 	out := new(GetMeResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetMe", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/UserService/GetMe", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +72,7 @@ func (c *userServiceClient) GetMe(ctx context.Context, in *GetMeRequest, opts ..
 
 func (c *userServiceClient) SetInfo(ctx context.Context, in *SetInfoRequest, opts ...grpc.CallOption) (*SetInfoResponse, error) {
 	out := new(SetInfoResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/SetInfo", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/UserService/SetInfo", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +81,7 @@ func (c *userServiceClient) SetInfo(ctx context.Context, in *SetInfoRequest, opt
 
 func (c *userServiceClient) GetUserIDByBuid(ctx context.Context, in *GetUserIDByBuidRequest, opts ...grpc.CallOption) (*GetUserIDByBuidResponse, error) {
 	out := new(GetUserIDByBuidResponse)
-	err := c.cc.Invoke(ctx, "/user.UserService/GetUserIDByBuid", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/UserService/GetUserIDByBuid", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,8 +92,6 @@ func (c *userServiceClient) GetUserIDByBuid(ctx context.Context, in *GetUserIDBy
 // All implementations should embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
-	// 向手机号发送验证码
-	SentMessageCode(context.Context, *SentMessageCodeRequest) (*SentMessageCodeResponse, error)
 	// 通过手机号注册，需要验证码
 	SignUpByPhone(context.Context, *SignUpByPhoneRequest) (*SignUpByPhoneResponse, error)
 	// 通过手机号登录
@@ -122,9 +109,6 @@ type UserServiceServer interface {
 type UnimplementedUserServiceServer struct {
 }
 
-func (UnimplementedUserServiceServer) SentMessageCode(context.Context, *SentMessageCodeRequest) (*SentMessageCodeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SentMessageCode not implemented")
-}
 func (UnimplementedUserServiceServer) SignUpByPhone(context.Context, *SignUpByPhoneRequest) (*SignUpByPhoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUpByPhone not implemented")
 }
@@ -152,24 +136,6 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
 }
 
-func _UserService_SentMessageCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SentMessageCodeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).SentMessageCode(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/user.UserService/SentMessageCode",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).SentMessageCode(ctx, req.(*SentMessageCodeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _UserService_SignUpByPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SignUpByPhoneRequest)
 	if err := dec(in); err != nil {
@@ -180,7 +146,7 @@ func _UserService_SignUpByPhone_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/SignUpByPhone",
+		FullMethod: "/UserService/SignUpByPhone",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).SignUpByPhone(ctx, req.(*SignUpByPhoneRequest))
@@ -198,7 +164,7 @@ func _UserService_SignInByPhone_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/SignInByPhone",
+		FullMethod: "/UserService/SignInByPhone",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).SignInByPhone(ctx, req.(*SignInByPhoneRequest))
@@ -216,7 +182,7 @@ func _UserService_GetMe_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/GetMe",
+		FullMethod: "/UserService/GetMe",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetMe(ctx, req.(*GetMeRequest))
@@ -234,7 +200,7 @@ func _UserService_SetInfo_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/SetInfo",
+		FullMethod: "/UserService/SetInfo",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).SetInfo(ctx, req.(*SetInfoRequest))
@@ -252,7 +218,7 @@ func _UserService_GetUserIDByBuid_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/GetUserIDByBuid",
+		FullMethod: "/UserService/GetUserIDByBuid",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GetUserIDByBuid(ctx, req.(*GetUserIDByBuidRequest))
@@ -264,13 +230,9 @@ func _UserService_GetUserIDByBuid_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
+	ServiceName: "UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "SentMessageCode",
-			Handler:    _UserService_SentMessageCode_Handler,
-		},
 		{
 			MethodName: "SignUpByPhone",
 			Handler:    _UserService_SignUpByPhone_Handler,
@@ -293,5 +255,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "2SOMEone/account/v1/user.proto",
+	Metadata: "2SOMEone/user/v1/user.proto",
 }

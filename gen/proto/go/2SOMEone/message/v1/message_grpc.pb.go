@@ -22,9 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MessageClient interface {
-	//向手机号发送验证码
+	// 向手机号发送验证码
 	SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error)
-	//校验验证码
+	// 校验验证码
 	CheckMessageCode(ctx context.Context, in *CheckMessageCodeRequest, opts ...grpc.CallOption) (*CheckMessageCodeResponse, error)
 }
 
@@ -38,7 +38,7 @@ func NewMessageClient(cc grpc.ClientConnInterface) MessageClient {
 
 func (c *messageClient) SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error) {
 	out := new(SentMessageCodeResponse)
-	err := c.cc.Invoke(ctx, "/api.v1.message/SentMessageCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message/SentMessageCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *messageClient) SentMessageCode(ctx context.Context, in *SentMessageCode
 
 func (c *messageClient) CheckMessageCode(ctx context.Context, in *CheckMessageCodeRequest, opts ...grpc.CallOption) (*CheckMessageCodeResponse, error) {
 	out := new(CheckMessageCodeResponse)
-	err := c.cc.Invoke(ctx, "/api.v1.message/CheckMessageCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message/CheckMessageCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,9 +58,9 @@ func (c *messageClient) CheckMessageCode(ctx context.Context, in *CheckMessageCo
 // All implementations should embed UnimplementedMessageServer
 // for forward compatibility
 type MessageServer interface {
-	//向手机号发送验证码
+	// 向手机号发送验证码
 	SentMessageCode(context.Context, *SentMessageCodeRequest) (*SentMessageCodeResponse, error)
-	//校验验证码
+	// 校验验证码
 	CheckMessageCode(context.Context, *CheckMessageCodeRequest) (*CheckMessageCodeResponse, error)
 }
 
@@ -96,7 +96,7 @@ func _Message_SentMessageCode_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.v1.message/SentMessageCode",
+		FullMethod: "/message/SentMessageCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageServer).SentMessageCode(ctx, req.(*SentMessageCodeRequest))
@@ -114,7 +114,7 @@ func _Message_CheckMessageCode_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.v1.message/CheckMessageCode",
+		FullMethod: "/message/CheckMessageCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageServer).CheckMessageCode(ctx, req.(*CheckMessageCodeRequest))
@@ -126,7 +126,7 @@ func _Message_CheckMessageCode_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Message_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api.v1.message",
+	ServiceName: "message",
 	HandlerType: (*MessageServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
