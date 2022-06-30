@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: 2SOMEone/message/v1/message.proto
+// source: 2someone/message/v1/message.proto
 
 package message
 
@@ -38,7 +38,7 @@ func NewMessageClient(cc grpc.ClientConnInterface) MessageClient {
 
 func (c *messageClient) SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error) {
 	out := new(SentMessageCodeResponse)
-	err := c.cc.Invoke(ctx, "/message/SentMessageCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message.v1.Message/SentMessageCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *messageClient) SentMessageCode(ctx context.Context, in *SentMessageCode
 
 func (c *messageClient) CheckMessageCode(ctx context.Context, in *CheckMessageCodeRequest, opts ...grpc.CallOption) (*CheckMessageCodeResponse, error) {
 	out := new(CheckMessageCodeResponse)
-	err := c.cc.Invoke(ctx, "/message/CheckMessageCode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/message.v1.Message/CheckMessageCode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func _Message_SentMessageCode_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/message/SentMessageCode",
+		FullMethod: "/message.v1.Message/SentMessageCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageServer).SentMessageCode(ctx, req.(*SentMessageCodeRequest))
@@ -114,7 +114,7 @@ func _Message_CheckMessageCode_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/message/CheckMessageCode",
+		FullMethod: "/message.v1.Message/CheckMessageCode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageServer).CheckMessageCode(ctx, req.(*CheckMessageCodeRequest))
@@ -126,7 +126,7 @@ func _Message_CheckMessageCode_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Message_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "message",
+	ServiceName: "message.v1.Message",
 	HandlerType: (*MessageServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -139,5 +139,5 @@ var Message_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "2SOMEone/message/v1/message.proto",
+	Metadata: "2someone/message/v1/message.proto",
 }

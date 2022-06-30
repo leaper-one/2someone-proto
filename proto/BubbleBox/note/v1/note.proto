@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package note;
+package note.v1;
 
 option go_package = "./grpc/note";
 
 service NoteService {
     /*
      * 根据 note_id 访问投稿
-     * jwt needed in metadata
+     * jwt needed inx metadata
      */
     // rpc GetNote(GetNoteRequest) returns (GetNoteResponse) {}
     

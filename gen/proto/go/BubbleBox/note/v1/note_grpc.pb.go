@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: BubbleBox/note/v1/note.proto
+// source: bubblebox/note/v1/note.proto
 
 package note
 
@@ -58,7 +58,7 @@ func NewNoteServiceClient(cc grpc.ClientConnInterface) NoteServiceClient {
 
 func (c *noteServiceClient) GetNotes(ctx context.Context, in *GetNotesRequest, opts ...grpc.CallOption) (*GetNotesResponse, error) {
 	out := new(GetNotesResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/GetNotes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/GetNotes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *noteServiceClient) GetNotes(ctx context.Context, in *GetNotesRequest, o
 
 func (c *noteServiceClient) CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*CreateNoteResponse, error) {
 	out := new(CreateNoteResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/CreateNote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/CreateNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *noteServiceClient) CreateNote(ctx context.Context, in *CreateNoteReques
 
 func (c *noteServiceClient) UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*UpdateNoteResponse, error) {
 	out := new(UpdateNoteResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/UpdateNote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/UpdateNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *noteServiceClient) UpdateNote(ctx context.Context, in *UpdateNoteReques
 
 func (c *noteServiceClient) DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*DeleteNoteResponse, error) {
 	out := new(DeleteNoteResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/DeleteNote", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/DeleteNote", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func (c *noteServiceClient) DeleteNote(ctx context.Context, in *DeleteNoteReques
 
 func (c *noteServiceClient) ChangeNoteReadStatus(ctx context.Context, in *ChangeNoteReadStatusRequest, opts ...grpc.CallOption) (*ChangeNoteReadStatusResponse, error) {
 	out := new(ChangeNoteReadStatusResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/ChangeNoteReadStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/ChangeNoteReadStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ func (c *noteServiceClient) ChangeNoteReadStatus(ctx context.Context, in *Change
 
 func (c *noteServiceClient) ChangeNoteArchiveStatus(ctx context.Context, in *ChangeNoteArchiveStatusRequest, opts ...grpc.CallOption) (*ChangeNoteArchiveStatusResponse, error) {
 	out := new(ChangeNoteArchiveStatusResponse)
-	err := c.cc.Invoke(ctx, "/note.NoteService/ChangeNoteArchiveStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/note.v1.NoteService/ChangeNoteArchiveStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func _NoteService_GetNotes_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/GetNotes",
+		FullMethod: "/note.v1.NoteService/GetNotes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).GetNotes(ctx, req.(*GetNotesRequest))
@@ -202,7 +202,7 @@ func _NoteService_CreateNote_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/CreateNote",
+		FullMethod: "/note.v1.NoteService/CreateNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).CreateNote(ctx, req.(*CreateNoteRequest))
@@ -220,7 +220,7 @@ func _NoteService_UpdateNote_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/UpdateNote",
+		FullMethod: "/note.v1.NoteService/UpdateNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).UpdateNote(ctx, req.(*UpdateNoteRequest))
@@ -238,7 +238,7 @@ func _NoteService_DeleteNote_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/DeleteNote",
+		FullMethod: "/note.v1.NoteService/DeleteNote",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).DeleteNote(ctx, req.(*DeleteNoteRequest))
@@ -256,7 +256,7 @@ func _NoteService_ChangeNoteReadStatus_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/ChangeNoteReadStatus",
+		FullMethod: "/note.v1.NoteService/ChangeNoteReadStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).ChangeNoteReadStatus(ctx, req.(*ChangeNoteReadStatusRequest))
@@ -274,7 +274,7 @@ func _NoteService_ChangeNoteArchiveStatus_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/note.NoteService/ChangeNoteArchiveStatus",
+		FullMethod: "/note.v1.NoteService/ChangeNoteArchiveStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NoteServiceServer).ChangeNoteArchiveStatus(ctx, req.(*ChangeNoteArchiveStatusRequest))
@@ -286,7 +286,7 @@ func _NoteService_ChangeNoteArchiveStatus_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var NoteService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "note.NoteService",
+	ServiceName: "note.v1.NoteService",
 	HandlerType: (*NoteServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -315,5 +315,5 @@ var NoteService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "BubbleBox/note/v1/note.proto",
+	Metadata: "bubblebox/note/v1/note.proto",
 }

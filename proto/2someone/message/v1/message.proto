@@ -1,8 +1,10 @@
 syntax = "proto3";
 
+package message.v1;
+
 option go_package = "api/v1/message";
 
-service message {
+service Message {
   // 向手机号发送验证码
   rpc SentMessageCode(SentMessageCodeRequest) returns (SentMessageCodeResponse) {}
   // 校验验证码

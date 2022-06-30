@@ -2,6 +2,8 @@ syntax = "proto3";
 
 // import public "google/protobuf/timestamp.proto";
 
+// package 2someone.user.v1;
+
 option go_package = "./grpc/user";
 
 service UserService {
