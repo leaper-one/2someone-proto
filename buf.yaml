@@ -1,6 +1,5 @@
-version: v1beta1
+version: v1
 name: buf.buil/2someone-proto/demo
 build:
   roots:
-    - 2SOMEone
-    - BubbleBox
+    - proto

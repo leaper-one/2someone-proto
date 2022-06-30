@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: msg/v1/message.proto
+// source: 2SOMEone/message/v1/message.proto
 
 package message
 
@@ -22,8 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MessageClient interface {
-	//测试
-	Message(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error)
 	//向手机号发送验证码
 	SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error)
 	//校验验证码
@@ -36,15 +34,6 @@ type messageClient struct {
 
 func NewMessageClient(cc grpc.ClientConnInterface) MessageClient {
 	return &messageClient{cc}
-}
-
-func (c *messageClient) Message(ctx context.Context, in *MessageRequest, opts ...grpc.CallOption) (*MessageResponse, error) {
-	out := new(MessageResponse)
-	err := c.cc.Invoke(ctx, "/api.v1.message/message", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *messageClient) SentMessageCode(ctx context.Context, in *SentMessageCodeRequest, opts ...grpc.CallOption) (*SentMessageCodeResponse, error) {
@@ -69,8 +58,6 @@ func (c *messageClient) CheckMessageCode(ctx context.Context, in *CheckMessageCo
 // All implementations should embed UnimplementedMessageServer
 // for forward compatibility
 type MessageServer interface {
-	//测试
-	Message(context.Context, *MessageRequest) (*MessageResponse, error)
 	//向手机号发送验证码
 	SentMessageCode(context.Context, *SentMessageCodeRequest) (*SentMessageCodeResponse, error)
 	//校验验证码
@@ -81,9 +68,6 @@ type MessageServer interface {
 type UnimplementedMessageServer struct {
 }
 
-func (UnimplementedMessageServer) Message(context.Context, *MessageRequest) (*MessageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Message not implemented")
-}
 func (UnimplementedMessageServer) SentMessageCode(context.Context, *SentMessageCodeRequest) (*SentMessageCodeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SentMessageCode not implemented")
 }
@@ -100,24 +84,6 @@ type UnsafeMessageServer interface {
 
 func RegisterMessageServer(s grpc.ServiceRegistrar, srv MessageServer) {
 	s.RegisterService(&Message_ServiceDesc, srv)
-}
-
-func _Message_Message_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MessageServer).Message(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.v1.message/message",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MessageServer).Message(ctx, req.(*MessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Message_SentMessageCode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -164,10 +130,6 @@ var Message_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MessageServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "message",
-			Handler:    _Message_Message_Handler,
-		},
-		{
 			MethodName: "SentMessageCode",
 			Handler:    _Message_SentMessageCode_Handler,
 		},
@@ -177,5 +139,5 @@ var Message_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "msg/v1/message.proto",
+	Metadata: "2SOMEone/message/v1/message.proto",
 }
